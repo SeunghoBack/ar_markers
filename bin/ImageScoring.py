@@ -120,12 +120,13 @@ if __name__ == '__main__':
 	parser.add_argument('--dir', type=str, default='/home/nearthlab/download')
 	args = parser.parse_args()
 	fPath = args.dir
+	imgNames = os.listdir(fPath)
+	imgNames.sort()
+
 	createFolder(fPath)
 	f = open(fPath+'/result/output.csv','w', newline='')
 	wr = csv.writer(f)
 
-	imgNames = os.listdir(fPath)
-	imgNames.sort()
 	i = 0
 	for imgName in imgNames:        
 		main(fPath + '/' + imgName, imgName)
