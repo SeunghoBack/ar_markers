@@ -47,7 +47,7 @@ def isNear(markerPos, markerCenter):
 
 def main(argv, imgName):
 	# 마커 인식할 이미지 파일 이름 표시
-	print("the image file name is " + argv)
+	print("image file : " + argv)
 	# 이미지 파일에서 이미지 추출
 	frame = cv2.imread(argv, cv2.IMREAD_UNCHANGED)
 
@@ -106,7 +106,7 @@ def main(argv, imgName):
 			print("image is normal")
 			blurtype = 'normal'
 		'''
-		cv2.imwrite(fPath+'/result/'+imgName[:-4]+ "_" + str(mean) + "_" + ".jpg", img)
+		cv2.imwrite(fPath+'/result/'+imgName[:-4]+ "_" + str(mean) + ".jpg", img)
 
 	if len(meanList) != 0:
 		csvText.append(min(meanList))
