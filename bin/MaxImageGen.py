@@ -70,6 +70,7 @@ def main(argv, imgName):
 	markerPos = []
 	csvText = []
 	meanList = []
+	imgList = []
 	csvText.append(imgName)
 	for marker in markers:
 		# id = marker.id, 마커의 중심 위치 : marker.center 표시
@@ -103,7 +104,7 @@ def main(argv, imgName):
 		gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		mean = detect_blur_fft(gray, size=60)
 		meanList.append(mean)
-		
+		imgList.append(imgO)
 		#print("blur-fft-mean",mean)
 		'''
 		blurtype = 'None'
@@ -114,9 +115,9 @@ def main(argv, imgName):
 			print("image is normal")
 			blurtype = 'normal'
 		'''
-		cv2.imwrite(fPath+'/result/'+imgName[:-4]+ "_" + str(mean) + ".jpg", imgO)
 
 	if len(meanList) != 0:
+		cv2.imwrite(fPath+'/result/'+imgName[:-4]+ "_" + str(max(meanList)) + ".jpg", imgList[meanList.index(max(meanList))])	
 		csvText.append(min(meanList))
 		csvText.append(max(meanList))
 		csvText.append(meanList)
